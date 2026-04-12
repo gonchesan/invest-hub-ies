@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Configuración de Dark Mode */
+  --variant-dark: class;
+
+  /* Fuentes */
+  --font-headline: 'Plus Jakarta Sans';
+  --font-body: 'Manrope';
+  --font-label: 'Manrope';
+
+  /* Border Radius */
+  --radius-default: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  /* Colores Personalizados */
+  /* Nota: Tailwind v4 usa variables CSS para definir la paleta */
+  --color-secondary-container: #e2e1f4;
+  --color-primary-container: #d0fb59;
+  --color-tertiary-fixed-dim: #d0c7ee;
+  --color-secondary: #5a5a6a;
+  --color-inverse-surface: #0c0e13;
+  --color-on-secondary-fixed: #3d3e4d;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-error-container: #520c00;
+  --color-outline-variant: #acacb4;
+  --color-on-secondary: #f3f1ff;
+  --color-error-dim: #b92902;
+  --color-on-surface: #2d2e34;
+  --color-on-tertiary: #f6f0ff;
+  --color-tertiary-dim: #514b6c;
+  --color-secondary-fixed-dim: #d4d3e6;
+  --color-background: #f7f6fe;
+  --color-primary-dim: #425700;
+  --color-primary: #4d6300;
+  --color-on-primary-fixed: #394b00;
+  --color-surface-container-highest: #dcdce7;
+  --color-error-container: #f95630;
+  --color-secondary-dim: #4e4e5e;
+  --color-surface-container-high: #e2e2ec;
+  --color-on-secondary-container: #505060;
+  --color-tertiary-container: #ded5fd;
+  --color-on-tertiary-fixed: #3b3655;
+  --color-surface-container-low: #f0f0f9;
+  --color-surface-bright: #f7f6fe;
+  --color-on-primary: #e0ff8c;
+  --color-on-primary-fixed-variant: #516900;
+  --color-on-error: #ffefec;
+  --color-on-background: #2d2e34;
+  --color-tertiary-fixed: #ded5fd;
+  --color-on-secondary-fixed-variant: #5a5a6a;
+  --color-outline: #76767d;
+  --color-on-tertiary-fixed-variant: #585273;
+  --color-surface: #f7f6fe;
+  --color-error: #b02500;
+  --color-inverse-primary: #d3fe5c;
+  --color-surface-variant: #dcdce7;
+  --color-on-primary-container: #485e00;
+  --color-primary-fixed: #d0fb59;
+  --color-surface-dim: #d3d4df;
+  --color-secondary-fixed: #e2e1f4;
+  --color-tertiary: #5d5779;
+  --color-on-surface-variant: #5a5b62;
+  --color-on-tertiary-container: #4e4869;
+  --color-primary-fixed-dim: #c2ec4c;
+  --color-surface-tint: #4d6300;
+  --color-surface-container: #e8e7f1;
+  --color-inverse-on-surface: #9c9ca4;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+}
+h1,
+h2,
+h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
