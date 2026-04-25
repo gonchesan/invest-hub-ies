@@ -32,15 +32,19 @@
 </head>
 
 <body
-    class="min-h-screen flex items-center justify-center p-4 md:p-8 bg-[radial-gradient(circle_at_top_left,#f7f6fe_0%,#e0d7ff_100%)]">
+    class="min-h-screen flex items-center justify-center p-4 md:p-8 md:py-16 bg-[radial-gradient(circle_at_top_left,#f7f6fe_0%,#e0d7ff_100%)]">
     <main
         class="w-full max-w-6xl flex flex-col md:flex-row bg-surface-container-lowest rounded-xl overflow-hidden ambient-shadow min-h-175">
+        <a href="/index.html" class="flex gap-2 absolute top-6 text-primary font-bold ml-1">
+            <span class="material-symbols-outlined" data-icon="arrow_left_alt">arrow_left_alt</span>
+            Volver
+        </a>
         <!-- Lado izquierdo -->
-        <section class="hidden md:flex md:w-1/2 relative bg-inverse-surface flex-col justify-between p-12 text-white">
+        <section
+            class="hidden md:flex md:w-1/2 relative bg-linear-60 from-zinc-800 via-stone-700 to-zinc-900 flex-col justify-between p-12 text-white">
             <div class="z-10">
-                <div class="flex items-center gap-2 mb-12">
-                    <span class="headline-font font-extrabold text-2xl tracking-tight text-white">Invest Hub</span>
-                </div>
+                <img class="h-12 mb-12 object-cover" alt="Invest hub logo" src="./src/assets/invest-hub-logo-alt.svg"
+                    loading="lazy" />
                 <h1 class="headline-font text-5xl font-extrabold leading-tight mb-6 text-balance">
                     Ayuda a <span class="text-primary-container">dar vida</span> a proyectos
                     creativos.
