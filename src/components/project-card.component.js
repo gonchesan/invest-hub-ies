@@ -1,37 +1,102 @@
 import { getPercentage, formatArs } from '../utils/currency.js';
 
-export const URGENT_PROJECTS = [
-  {
-    title: 'Quantum Neural Lab',
-    lastHours: 48,
-    shortDescription:
-      'Desarrollo de procesadores orgánicos inspirados en el cerebro humano.',
-    goal: 900000,
-    link: '#',
-    collected: 528000,
-    image: './src/assets/q-neural-lab.webp',
+const CATEGORY_STYLES = {
+  Tecnología: {
+    container: 'bg-primary-container/90 text-on-primary-container',
   },
-  {
-    title: 'Verde Vertical Madrid',
-    lastHours: 24,
-    shortDescription:
-      'Transformación de edificios industriales en pulmones urbanos sostenibles.',
-    goal: 2000000,
-    link: '#',
-    collected: 1700000,
-    image: './src/assets/verde-vertical-madrid.jpg',
+  Sostenibilidad: {
+    container: 'bg-tertiary-container/90 text-on-tertiary-container',
   },
-  {
-    title: 'Aero-Drone Delivery',
-    lastHours: 12,
-    shortDescription:
-      'Logística aérea autónoma para suministros médicos de emergencia.',
-    goal: 500000,
-    link: '#',
-    collected: 475000,
-    image: './src/assets/aero-drone-delivery.webp',
+  Arte: {
+    container: 'bg-secondary-container/90 text-on-secondary-container',
   },
-];
+  Impacto: {
+    container: 'bg-primary-container/90 text-on-primary-container',
+  },
+};
+
+const getCategoryClass = (category) => {
+  return (
+    CATEGORY_STYLES[category]?.container ||
+    'bg-surface-container-high text-on-surface'
+  );
+};
+
+export const createProjectCard = (card) => {
+  const percentage = getPercentage(card.collected, card.goal);
+  const daysLeft =
+    card.lastHours === 0
+      ? 'Finalizado'
+      : `${Math.ceil(card.lastHours / 24)} días restantes`;
+
+  return `
+    <article
+      class="bg-surface-container-lowest rounded-2xl overflow-hidden ambient-shadow flex flex-col group hover:-translate-y-1 transition-transform duration-300">
+
+      <div class="relative h-64 overflow-hidden">
+        <img
+          alt="${card.title}"
+          src="${card.image}"
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+
+        <div
+          class="absolute top-4 left-4 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${getCategoryClass(
+            card.category,
+          )}">
+          ${card.category}
+        </div>
+      </div>
+
+      <div class="p-8 flex flex-col flex-grow">
+        <h3 class="font-headline text-2xl font-bold text-on-surface mb-3 leading-tight">
+          ${card.title}
+        </h3>
+
+        <p class="text-on-surface-variant body-md mb-6 flex-grow leading-relaxed">
+          ${card.shortDescription}
+        </p>
+
+        <div class="space-y-4">
+          <div class="flex justify-between items-end mb-1">
+            <span class="text-sm font-bold text-primary">
+              ${percentage}% ${percentage >= 100 ? 'Financiado' : 'Completado'}
+            </span>
+
+            <span class="text-sm text-outline font-medium">
+              ${daysLeft}
+            </span>
+          </div>
+
+          <div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+            <div
+              class="h-full bg-primary-container rounded-full"
+              style="width: ${Math.min(percentage, 100)}%">
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <div>
+              <span class="block text-[10px] uppercase font-bold text-outline-variant tracking-wider">
+                Recaudado
+              </span>
+
+              <span class="text-lg font-extrabold text-on-surface">
+                ${formatArs(card.collected)}
+              </span>
+            </div>
+
+            <button
+              class="bg-on-surface text-surface py-2 px-6 rounded-full font-bold text-sm hover:opacity-90 active:scale-95 transition-all cursor-pointer">
+              Ver más
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </article>
+  `;
+};
 
 export const createUrgentCard = (card) => {
   return `

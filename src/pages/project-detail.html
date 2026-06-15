@@ -1,0 +1,214 @@
+<main class="pt-24 pb-20 px-4 md:px-8 max-w-screen-2xl mx-auto">
+    <!-- Hero Header Section -->
+    <header class="mb-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+            <div class="max-w-3xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span
+                        class="px-3 py-1 bg-tertiary-container text-on-tertiary-container rounded-full text-xs font-bold font-label uppercase tracking-widest">Sostenibilidad</span>
+                    <span class="flex items-center gap-1 text-on-surface-variant text-sm font-medium">
+                        <span class="material-symbols-outlined text-sm">location_on</span>
+                        Barcelona, España
+                    </span>
+                </div>
+                <h1
+                    class="font-display text-4xl md:text-6xl font-extrabold tracking-tight text-on-surface leading-tight">
+                    Neo-Forest: La Revolución de la Reforestación Urbana Inteligente
+                </h1>
+            </div>
+            <div class="flex gap-4">
+                <button
+                    class="p-3 rounded-full border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container transition-all">
+                    <span class="material-symbols-outlined">favorite</span>
+                </button>
+                <button
+                    class="p-3 rounded-full border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container transition-all">
+                    <span class="material-symbols-outlined">share</span>
+                </button>
+            </div>
+        </div>
+        <!-- Main Project Image -->
+        <div class="relative w-full aspect-video md:aspect-[21/9] rounded-xxl overflow-hidden ambient-shadow">
+            <img class="w-full h-full object-cover"
+                data-alt="A futuristic urban skyline integrated with dense, vertical forests and glowing neon-green smart sensors at dusk. The architecture is sleek and minimalist with soft lavender ambient lighting reflecting off glass surfaces. The mood is hopeful, high-tech, and ecologically focused, using the brand's lime green accents to highlight the technological growth elements within the organic green canopy."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa9RR6Mg2PbN54CfT5UzUIUzqTNJjbt6pE_VuvkhJHzM8CrkauMp_bY2Ya_iaItjDpkb_KUF9IVG0xaWB5fcI7CWk7jjKMgcTp3vRR7sbKFy6DlvJL7fpxWjkFyH-tIBx9GAgEThMQVWNEX8_lhs_QTD3oPz-q2LxhW2uaYKlm25VQOFyE_75AVUt81iHnm6Kh3puyIWvj8TcQvOuThx7g6OOkksCP8MqQ5_NDDDonzoSkf1ff436oYDTc0Zch78XyKC1zeSSBng">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+        </div>
+    </header>
+    <!-- Project Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Left Side: Main Content (Tabs) -->
+        <div class="lg:col-span-8 space-y-12">
+            <!-- Custom Tabs Navigation -->
+            <div class="flex border-b border-surface-variant overflow-x-auto hide-scrollbar gap-8">
+                <button
+                    class="pb-4 text-primary border-b-2 border-primary font-bold font-headline transition-all whitespace-nowrap"
+                    id="tab-about" onclick="switchTab('about')">Sobre el proyecto</button>
+                <button
+                    class="pb-4 text-on-surface-variant font-medium font-headline hover:text-primary transition-all whitespace-nowrap"
+                    id="tab-updates" onclick="switchTab('updates')">Actualizaciones (12)</button>
+                <button
+                    class="pb-4 text-on-surface-variant font-medium font-headline hover:text-primary transition-all whitespace-nowrap"
+                    id="tab-community" onclick="switchTab('community')">Comunidad</button>
+            </div>
+            <!-- Content Sections -->
+            <div class="space-y-10 animate-fade-in" id="content-about">
+                <section>
+                    <h3 class="font-headline text-2xl font-bold mb-6">Visión General</h3>
+                    <p class="text-on-surface-variant text-lg leading-relaxed mb-6 font-body">
+                        Neo-Forest es una iniciativa pionera que fusiona la biotecnología avanzada con el urbanismo
+                        contemporáneo. Nuestro objetivo es implementar micro-bosques inteligentes en el corazón de las
+                        ciudades europeas, utilizando algoritmos de IA para optimizar la captura de carbono y la
+                        regulación térmica local.
+                    </p>
+                    <p class="text-on-surface-variant text-lg leading-relaxed font-body">
+                        No solo plantamos árboles; creamos ecosistemas vivos que respiran datos y oxígeno. Cada unidad
+                        Neo-Forest está equipada con sensores que monitorean la calidad del aire en tiempo real,
+                        proporcionando transparencia absoluta sobre el impacto ambiental generado por su inversión.
+                    </p>
+                </section>
+                <!-- Bento-style Impact Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-surface-container-low p-8 rounded-xxl space-y-4">
+                        <span class="material-symbols-outlined text-primary text-4xl"
+                            style="font-variation-settings: 'FILL' 1;">eco</span>
+                        <h4 class="font-bold text-xl">Impacto Ecológico</h4>
+                        <p class="text-sm text-on-surface-variant">Captura de 50 toneladas de CO2 anuales por cada 100m²
+                            instalados.</p>
+                    </div>
+                    <div class="bg-primary-container/20 p-8 rounded-xxl space-y-4">
+                        <span class="material-symbols-outlined text-primary text-4xl"
+                            style="font-variation-settings: 'FILL' 1;">device_thermostat</span>
+                        <h4 class="font-bold text-xl">Isla de Calor</h4>
+                        <p class="text-sm text-on-surface-variant">Reducción de hasta 5°C en la temperatura ambiente
+                            circundante.</p>
+                    </div>
+                    <div class="bg-tertiary-container/30 p-8 rounded-xxl space-y-4">
+                        <span class="material-symbols-outlined text-tertiary text-4xl"
+                            style="font-variation-settings: 'FILL' 1;">diversity_1</span>
+                        <h4 class="font-bold text-xl">Bio-Diversidad</h4>
+                        <p class="text-sm text-on-surface-variant">Recuperación de especies locales de polinizadores
+                            urbanos.</p>
+                    </div>
+                </div>
+                <!-- Team Section -->
+                <section>
+                    <h3 class="font-headline text-2xl font-bold mb-8">El Equipo Visionario</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="flex items-center gap-6 p-4 rounded-xl bg-surface-container-lowest ambient-shadow">
+                            <img class="w-20 h-20 rounded-full object-cover"
+                                data-alt="Professional portrait of a middle-aged male entrepreneur with a visionary look. High-end editorial lighting, bright background with soft lavender tones, reflecting a successful and modern corporate identity."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4HfPygAHYuhZx7_0h1tq3GRCxAWPvLuWPmKozZrn3pZ1zuirGKEdseRCJQmZB8tQeTDYGQTOboBrYTESD9rfTN1IF_xTfGVgnukBC__YXsd08xbiEQJZXslPAbvIyRBPY6fuwiaEWFOMpdt4ekIjP7TlSk4jIqx7fba9DcTYgle5xV50NuAMFuruKysK8uDoI6OzDss7_1tgqbiZ6YBhrH7g0FTBey5w-957WkpQ0ZDmyX7TCJuPXArYw8ph7glrpIbRBE9lXgA">
+                            <div>
+                                <h5 class="font-bold text-lg">Dr. Javier Mendizábal</h5>
+                                <p class="text-sm text-primary font-semibold">Fundador &amp; CEO</p>
+                                <p class="text-xs text-on-surface-variant mt-1">Ex-Director de Sostenibilidad en UNESCO.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6 p-4 rounded-xl bg-surface-container-lowest ambient-shadow">
+                            <img class="w-20 h-20 rounded-full object-cover"
+                                data-alt="Professional portrait of a young female technology expert. Soft, high-key lighting, minimalist background with vibrant lime green accents in the background blurred art. The look is intelligent, professional, and modern."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUYHyYtiDRwNrnlED1wONKZDnRZzN8M9sUP_3WJ_AcKLVe7IaAIdc94O7q6_pCqN4AQtWP3i4g_8AABUuo4KiB0Yl-vUDHBwxaB1fwU-Jw-CkRspY3lbCfnZ2WV_vSUl7E2VIG8dCwXiru9hKqe5TNbjKihpoI1pJylDd8gCa5YWXYxHHCE8Qv_cLPlnLVYBO215RBe_JW7EwteaZi3RRejSoB4XrOWqlPQ4OIRT-YmwSmGK27Z60BQ791rr1DMEbb86PiKJZ8-Q">
+                            <div>
+                                <h5 class="font-bold text-lg">Elena Rossi</h5>
+                                <p class="text-sm text-primary font-semibold">CTO</p>
+                                <p class="text-xs text-on-surface-variant mt-1">Ingeniera Agrónoma y Arquitecta de
+                                    Sistemas IA.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- Hidden tabs for demo -->
+            <div class="hidden animate-fade-in py-10 text-center" id="content-updates">
+                <p class="text-on-surface-variant italic">Cargando actualizaciones recientes del proyecto...</p>
+            </div>
+            <div class="hidden animate-fade-in py-10 text-center" id="content-community">
+                <p class="text-on-surface-variant italic">Únete a la conversación con otros 1.2k inversores.</p>
+            </div>
+        </div>
+        <!-- Right Side: Sticky Funding Sidebar -->
+        <div class="lg:col-span-4">
+            <div
+                class="sticky top-28 bg-surface-container-lowest rounded-xxl p-8 ambient-shadow border border-surface-variant/10">
+                <div class="space-y-8">
+                    <div>
+                        <div class="flex justify-between items-end mb-2">
+                            <span class="font-display text-4xl font-black text-on-surface">€842,500</span>
+                            <span class="font-label text-primary font-bold">84%</span>
+                        </div>
+                        <div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+                            <div class="bg-primary h-full w-[84%] transition-all duration-1000 ease-out"></div>
+                        </div>
+                        <p class="text-sm text-on-surface-variant mt-3">recaudados de una meta de <span
+                                class="font-bold">€1,000,000</span></p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 bg-surface-container-low rounded-xl">
+                            <p class="text-xs text-on-surface-variant uppercase font-bold tracking-tighter">Inversores
+                            </p>
+                            <p class="text-xl font-headline font-bold">1,248</p>
+                        </div>
+                        <div class="p-4 bg-surface-container-low rounded-xl">
+                            <p class="text-xs text-on-surface-variant uppercase font-bold tracking-tighter">Días
+                                restantes</p>
+                            <p class="text-xl font-headline font-bold">14</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <button
+                            class="w-full py-5 rounded-full bg-primary-container text-on-primary-container font-headline font-extrabold text-lg shadow-lg shadow-primary-container/30 hover:scale-[1.02] active:scale-95 transition-all">
+                            Invertir ahora
+                        </button>
+                        <p
+                            class="text-[10px] text-center text-on-surface-variant uppercase tracking-widest font-medium">
+                            Inversión mínima: €500</p>
+                    </div>
+                    <div class="pt-6 border-t border-surface-variant/30">
+                        <div class="flex items-center gap-3 text-sm text-on-surface-variant">
+                            <span class="material-symbols-outlined text-primary">verified_user</span>
+                            <span>Proyecto verificado por The Curated Exchange</span>
+                        </div>
+                    </div>
+                    <!-- Secondary Info Card -->
+                    <div class="p-6 bg-inverse-surface rounded-xxl text-white space-y-4">
+                        <h5 class="font-headline font-bold text-primary-fixed">Oportunidad VIP</h5>
+                        <p class="text-sm text-white/70 leading-relaxed">
+                            Inversiones superiores a €5,000 reciben un certificado NFT exclusivo y acceso al portal de
+                            datos en tiempo real.
+                        </p>
+                        <a class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline"
+                            href="#">
+                            Saber más
+                            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    function switchTab(tabName) {
+        const tabs = ['about', 'updates', 'community'];
+        const activeClass = ['text-primary', 'border-b-2', 'border-primary', 'font-bold'];
+        const inactiveClass = ['text-on-surface-variant', 'font-medium'];
+
+        tabs.forEach(t => {
+            const content = document.getElementById(`content-${t}`);
+            const btn = document.getElementById(`tab-${t}`);
+
+            if (t === tabName) {
+                content.classList.remove('hidden');
+                btn.classList.add(...activeClass);
+                btn.classList.remove(...inactiveClass);
+            } else {
+                content.classList.add('hidden');
+                btn.classList.remove(...activeClass);
+                btn.classList.add(...inactiveClass);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,61 @@
+<main class="pt-28 pb-20 px-8 max-w-screen-2xl mx-auto">
+    <!-- Header Section -->
+    <header class="mb-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+                <span
+                    class="inline-block px-3 py-1 bg-tertiary-container text-on-tertiary-container rounded-full text-xs font-bold uppercase tracking-widest mb-4">Explorar</span>
+                <h1
+                    class="font-headline text-5xl md:text-6xl font-extrabold tracking-tight text-on-surface leading-[1.1]">
+                    Archivo de <span class="text-primary">Proyectos</span>
+                </h1>
+            </div>
+            <div class="max-w-md w-full">
+                <div class="relative group">
+                    <span
+                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+                    <input
+                        class="w-full bg-surface-container-low border-none rounded-full py-4 pl-12 pr-6 focus:ring-2 focus:ring-primary/20 placeholder:text-outline-variant text-on-surface transition-all"
+                        placeholder="Buscar por nombre o palabra clave..." type="text">
+                </div>
+            </div>
+        </div>
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-3 mt-10" id="projects-filters">
+            <button
+                class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-bold shadow-sm flex items-center gap-2 transition-all"
+                data-category="Todos">
+                <span class="material-symbols-outlined text-lg">grid_view</span>
+                Todos
+            </button>
+            <button
+                class="bg-surface-container-highest text-on-surface-variant px-6 py-2.5 rounded-full font-semibold hover:bg-surface-variant transition-all flex items-center gap-2"
+                data-category="Tecnología">
+                <span class="material-symbols-outlined text-lg">memory</span>
+                Tecnología
+            </button>
+            <button
+                class="bg-surface-container-highest text-on-surface-variant px-6 py-2.5 rounded-full font-semibold hover:bg-surface-variant transition-all flex items-center gap-2"
+                data-category="Sostenibilidad">
+                <span class="material-symbols-outlined text-lg">eco</span>
+                Sostenibilidad
+            </button>
+            <button
+                class="bg-surface-container-highest text-on-surface-variant px-6 py-2.5 rounded-full font-semibold hover:bg-surface-variant transition-all flex items-center gap-2"
+                data-category="Arte">
+                <span class="material-symbols-outlined text-lg">palette</span>
+                Arte
+            </button>
+            <button
+                class="bg-surface-container-highest text-on-surface-variant px-6 py-2.5 rounded-full font-semibold hover:bg-surface-variant transition-all flex items-center gap-2"
+                data-category="Impacto">
+                <span class="material-symbols-outlined text-lg">public</span>
+                Impacto
+            </button>
+        </div>
+    </header>
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container">
+    </div>
+
+</main>

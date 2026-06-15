@@ -74,12 +74,13 @@ class SimpleRouter {
     try {
       // Limpiar path
       let cleanPath = path.replace(/\/$/, '') || '/';
+      const pagePath = this.resolvePagePath(cleanPath);
 
       // Determinar archivo a cargar
       let filePath =
-        cleanPath === '/'
+        pagePath === '/'
           ? '/src/pages/index.html'
-          : `/src/pages${cleanPath}.html`;
+          : `/src/pages${pagePath}.html`;
 
       const response = await fetch(filePath);
 
@@ -97,7 +98,7 @@ class SimpleRouter {
       this.appContainer.innerHTML = html;
 
       // Ejecutar scripts en la página cargada
-      await this.loadPageScript(cleanPath);
+      await this.loadPageScript(pagePath);
 
       // this.executeScripts(this.appContainer);
 
@@ -140,6 +141,23 @@ class SimpleRouter {
       </main>
       `;
     }
+  }
+
+  /**
+   * Resolver rutas dinámicas hacia una página existente.
+   * Ej: /projects/quantum-neural-lab -> /project-detail
+   */
+  resolvePagePath(path) {
+    const projectDetailRoutes = [
+      /^\/projects\/[^/]+$/,
+      /^\/project-detail\/[^/]+$/,
+    ];
+
+    if (projectDetailRoutes.some((route) => route.test(path))) {
+      return '/project-detail';
+    }
+
+    return path;
   }
 
   async loadPageScript(path) {

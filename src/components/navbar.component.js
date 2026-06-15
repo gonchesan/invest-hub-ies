@@ -1,18 +1,6 @@
 // Importar funciones de autenticación desde el módulo de utilidades
+import { AUTH_ROUTES, PUBLIC_ROUTES } from '../constants.d.js';
 import { isAuthenticated, getSession, logout } from '../utils/auth.js';
-
-// Rutas que todos pueden ver
-const PUBLIC_ROUTES = [
-  { link: '/', label: 'Inicio' },
-  { link: '/proyectos', label: 'Proyectos' },
-  { link: '/inversiones', label: 'Inversiones' },
-];
-
-// Rutas para usuarios no autenticados (login y registro)
-const AUTH_ROUTES = [
-  { link: '/auth/login', label: 'Iniciar sesión' },
-  { link: '/auth/register', label: 'Registrarme' },
-];
 
 // Verifica si una ruta está activa en la URL actual
 const isActive = (route) => {
@@ -73,11 +61,7 @@ function renderUserMenu() {
       <summary
         class="list-none cursor-pointer flex items-center"
       >
-        <img
-          class="h-10 w-10 rounded-full object-cover ring-1 ring-gray-300"
-          src="https://i.pravatar.cc/100"
-          alt="Avatar usuario"
-        />
+      <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold capitalize">${session.email[0] || 'U'}</div>
       </summary>
 
       <div

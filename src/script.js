@@ -2,12 +2,15 @@
 import router from './router.js';
 import { renderNavbar } from './components/navbar.component.js';
 import { requireAuth, isAuthenticated, getSession } from './utils/auth.js';
+import { renderFooter } from './components/footer.component.js';
 
 // Renderizar la barra de navegación al cargar
 renderNavbar();
+renderFooter();
 
 // Obtener el contenedor del navbar
 const navbarContainer = document.querySelector('header');
+const footerContainer = document.querySelector('footer');
 
 // Ejecutar cuando la ruta cambia
 router.onRouteChange((path) => {
@@ -27,6 +30,7 @@ router.onRouteChange((path) => {
    */
   // Ocultar navbar en páginas de login y registro
   navbarContainer.classList.toggle('hidden', isAuthRoute);
+  footerContainer.classList.toggle('hidden', isAuthRoute);
 
   /*
    |--------------------------------------------------------------------------
