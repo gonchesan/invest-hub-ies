@@ -123,8 +123,10 @@ export function renderNavbar() {
         <span class="h-8 w-1 bg-gray-300"></span>
 
         <div class="hidden md:flex items-center gap-6 font-plus-jakarta text-sm font-medium">
-          ${PUBLIC_ROUTES.map((route) => {
-            return `
+          ${
+            isAuthenticated()
+              ? PUBLIC_ROUTES.map((route) => {
+                  return `
               <a
                 href="${route.link}"
                 class="${getNavLinkClass(route.link)}"
@@ -132,7 +134,20 @@ export function renderNavbar() {
                 ${route.label}
               </a>
             `;
-          }).join('')}
+                }).join('')
+              : PUBLIC_ROUTES.map((route) => {
+                  return `
+              <a
+                href="${route.link}"
+                class="${getNavLinkClass(route.link)}"
+              >
+                ${route.label}
+              </a>
+            `;
+                })
+                  .slice(0, -1)
+                  .join('')
+          }
         </div>
       </div>
 

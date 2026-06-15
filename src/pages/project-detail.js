@@ -6,6 +6,7 @@ import {
   isFavoriteProject,
   toggleFavoriteProject,
 } from '../utils/project-storage.js';
+import { isAuthenticated } from '../utils/auth.js';
 
 const getProjectIdFromUrl = () => {
   const params = new URLSearchParams(window.location.search);
@@ -50,7 +51,14 @@ const renderProject = (container, project) => {
   const userContribution = getProjectContributionTotal(project.id);
   const collected = project.collected + userContribution;
   const percentage = getPercentage(collected, project.goal);
-  const favorite = isFavoriteProject(project.id);
+  const isLoggedIn = isAuthenticated();
+  const favorite = isLoggedIn && isFavoriteProject(project.id);
+  const favoriteButtonClass = isLoggedIn
+    ? 'text-on-surface-variant hover:bg-surface-container cursor-pointer'
+    : 'text-outline opacity-60 cursor-not-allowed';
+  const contributionControlClass = isLoggedIn
+    ? 'cursor-pointer hover:scale-[1.02] active:scale-95'
+    : 'cursor-not-allowed opacity-60';
   const daysLeft = getDaysLeft(project.deadline);
 
   container.innerHTML = `
@@ -75,9 +83,10 @@ const renderProject = (container, project) => {
         <button
           type="button"
           id="favorite-detail-button"
-          class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container transition-all cursor-pointer">
+          class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-outline-variant/30 transition-all ${favoriteButtonClass}"
+          ${isLoggedIn ? '' : 'disabled'}>
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' ${favorite ? 1 : 0};">favorite</span>
-          ${favorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+          ${isLoggedIn ? (favorite ? 'Quitar de favoritos' : 'Agregar a favoritos') : 'Inicia sesión para guardar'}
         </button>
       </div>
 
@@ -155,15 +164,20 @@ const renderProject = (container, project) => {
               <label class="block text-sm font-bold text-on-surface" for="contribution-amount">Contribución simulada</label>
               <input
                 id="contribution-amount"
-                class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full py-4 px-5 focus:ring-2 focus:ring-primary/20 text-on-surface"
+                class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full py-4 px-5 focus:ring-2 focus:ring-primary/20 text-on-surface ${isLoggedIn ? '' : 'cursor-not-allowed opacity-60'}"
                 min="1"
                 placeholder="Monto en ARS"
                 required
+                ${isLoggedIn ? '' : 'disabled'}
                 type="number">
-              <button class="w-full py-4 rounded-full bg-primary-container text-on-primary-container font-headline font-extrabold text-lg shadow-lg shadow-primary-container/30 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer">
-                Contribuir
+              <button
+                class="w-full py-4 rounded-full bg-primary-container text-on-primary-container font-headline font-extrabold text-lg shadow-lg shadow-primary-container/30 transition-all ${contributionControlClass}"
+                ${isLoggedIn ? '' : 'disabled'}>
+                ${isLoggedIn ? 'Contribuir' : 'Inicia sesión para contribuir'}
               </button>
-              <p id="contribution-feedback" class="min-h-5 text-sm text-primary font-semibold"></p>
+              <p id="contribution-feedback" class="min-h-5 text-sm ${isLoggedIn ? 'text-primary' : 'text-on-surface-variant'} font-semibold">
+                ${isLoggedIn ? '' : 'Necesitas iniciar sesión para guardar favoritos o realizar contribuciones.'}
+              </p>
             </form>
           </div>
         </div>
@@ -176,6 +190,8 @@ const bindEvents = (container, project) => {
   container
     .querySelector('#favorite-detail-button')
     ?.addEventListener('click', () => {
+      if (!isAuthenticated()) return;
+
       toggleFavoriteProject(project.id);
       renderProject(container, project);
       bindEvents(container, project);
@@ -185,6 +201,8 @@ const bindEvents = (container, project) => {
     .querySelector('#contribution-form')
     ?.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      if (!isAuthenticated()) return;
 
       const input = container.querySelector('#contribution-amount');
       const amount = Number(input.value);

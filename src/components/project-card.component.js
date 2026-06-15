@@ -2,7 +2,9 @@ import { getPercentage, formatArs } from '../utils/currency.js';
 import {
   isFavoriteProject,
   getProjectContributionTotal,
+  toggleFavoriteProject,
 } from '../utils/project-storage.js';
+import { isAuthenticated } from '../utils/auth.js';
 
 const CATEGORY_STYLES = {
   Tecnología: {
@@ -26,10 +28,57 @@ const getCategoryClass = (category) => {
   );
 };
 
+const updateFavoriteButton = (button, isFavorite) => {
+  const icon = button.querySelector('.material-symbols-outlined');
+
+  button.setAttribute(
+    'aria-label',
+    isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos',
+  );
+
+  if (icon) {
+    icon.style.fontVariationSettings = `'FILL' ${isFavorite ? 1 : 0}`;
+  }
+};
+
+const bindFavoriteToggle = () => {
+  if (window.__investHubProjectCardFavoritesBound) return;
+
+  window.__investHubProjectCardFavoritesBound = true;
+
+  document.addEventListener('click', (e) => {
+    const favoriteButton = e.target.closest('[data-favorite-project]');
+
+    if (!favoriteButton) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!isAuthenticated() || favoriteButton.disabled) return;
+
+    const projectId = favoriteButton.dataset.favoriteProject;
+    const isFavorite = toggleFavoriteProject(projectId);
+
+    updateFavoriteButton(favoriteButton, isFavorite);
+
+    window.dispatchEvent(
+      new CustomEvent('project-favorite-change', {
+        detail: { projectId, isFavorite },
+      }),
+    );
+  });
+};
+
+bindFavoriteToggle();
+
 export const createProjectCard = (card) => {
   const collected = card.collected + getProjectContributionTotal(card.id);
   const percentage = getPercentage(collected, card.goal);
-  const isFavorite = isFavoriteProject(card.id);
+  const canUseFavorites = isAuthenticated();
+  const isFavorite = canUseFavorites && isFavoriteProject(card.id);
+  const favoriteButtonClass = canUseFavorites
+    ? 'text-primary hover:scale-105 active:scale-95 cursor-pointer'
+    : 'text-outline opacity-60 cursor-not-allowed';
   const daysLeft =
     card.lastHours === 0
       ? 'Finalizado'
@@ -55,8 +104,9 @@ export const createProjectCard = (card) => {
 
         <button
           type="button"
-          class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-container-lowest/90 text-primary flex items-center justify-center ambient-shadow hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-container-lowest/90 flex items-center justify-center ambient-shadow transition-all ${favoriteButtonClass}"
           data-favorite-project="${card.id}"
+          ${canUseFavorites ? '' : 'disabled'}
           aria-label="${isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' ${isFavorite ? 1 : 0};">favorite</span>
         </button>
