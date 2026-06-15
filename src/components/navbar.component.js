@@ -116,7 +116,7 @@ export function renderNavbar() {
         <img
           class="h-12 w-full object-cover"
           alt="Invest hub logo"
-          src="./src/assets/invest-hub-logo.svg"
+          src="/src/assets/invest-hub-logo.svg"
           loading="lazy"
         />
 

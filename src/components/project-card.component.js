@@ -1,4 +1,8 @@
 import { getPercentage, formatArs } from '../utils/currency.js';
+import {
+  isFavoriteProject,
+  getProjectContributionTotal,
+} from '../utils/project-storage.js';
 
 const CATEGORY_STYLES = {
   Tecnología: {
@@ -23,7 +27,9 @@ const getCategoryClass = (category) => {
 };
 
 export const createProjectCard = (card) => {
-  const percentage = getPercentage(card.collected, card.goal);
+  const collected = card.collected + getProjectContributionTotal(card.id);
+  const percentage = getPercentage(collected, card.goal);
+  const isFavorite = isFavoriteProject(card.id);
   const daysLeft =
     card.lastHours === 0
       ? 'Finalizado'
@@ -46,6 +52,14 @@ export const createProjectCard = (card) => {
           )}">
           ${card.category}
         </div>
+
+        <button
+          type="button"
+          class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-container-lowest/90 text-primary flex items-center justify-center ambient-shadow hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          data-favorite-project="${card.id}"
+          aria-label="${isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' ${isFavorite ? 1 : 0};">favorite</span>
+        </button>
       </div>
 
       <div class="p-8 flex flex-col flex-grow">
@@ -82,14 +96,15 @@ export const createProjectCard = (card) => {
               </span>
 
               <span class="text-lg font-extrabold text-on-surface">
-                ${formatArs(card.collected)}
+                ${formatArs(collected)}
               </span>
             </div>
 
-            <button
+            <a
+              href="/projects/${card.id}"
               class="bg-on-surface text-surface py-2 px-6 rounded-full font-bold text-sm hover:opacity-90 active:scale-95 transition-all cursor-pointer">
               Ver más
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -99,6 +114,9 @@ export const createProjectCard = (card) => {
 };
 
 export const createUrgentCard = (card) => {
+  const collected = card.collected + getProjectContributionTotal(card.id);
+  const percentage = getPercentage(collected, card.goal);
+
   return `
     <div
         class="bg-surface-container-lowest rounded-2xl overflow-hidden group border border-transparent hover:border-primary-container/30 transition-all duration-300">
@@ -115,16 +133,17 @@ export const createUrgentCard = (card) => {
             <p class="text-on-surface-variant text-sm mb-6 line-clamp-2">${card.shortDescription}</p>
             <div class="space-y-4">
                 <div class="flex justify-between text-sm font-bold">
-                    <span class="text-primary">${getPercentage(card.collected, card.goal)}% Financiado</span>
-                    <span class="text-on-surface">${formatArs(card.collected)}</span>
+                    <span class="text-primary">${percentage}% Financiado</span>
+                    <span class="text-on-surface">${formatArs(collected)}</span>
                 </div>
                 <div class="w-full h-3 bg-surface-container-low rounded-full overflow-hidden">
-                    <div class="bg-primary h-full rounded-full" style="width: ${getPercentage(card.collected, card.goal)}%"></div>
+                    <div class="bg-primary h-full rounded-full" style="width: ${Math.min(percentage, 100)}%"></div>
                 </div>
                 <div class="flex justify-between items-center pt-2">
                     <div class="text-xs text-on-surface-variant">Meta: <b>${formatArs(card.goal)}</b></div>
-                    <button
-                        class="bg-primary-container text-on-primary-fixed px-4 py-2 rounded-full text-xs font-bold hover:opacity-80 cursor-pointer">Invertir</button>
+                    <a
+                        href="/projects/${card.id}"
+                        class="bg-primary-container text-on-primary-fixed px-4 py-2 rounded-full text-xs font-bold hover:opacity-80 cursor-pointer">Invertir</a>
                 </div>
             </div>
         </div>

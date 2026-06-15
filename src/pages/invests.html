@@ -1,261 +1,63 @@
-<!-- Main Content Canvas -->
-<main class="flex-grow w-full max-w-screen-2xl mx-auto px-8 py-10 pt-20">
-    <!-- Header & Portfolio Summary -->
-    <section class="mb-12">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
-            <div>
-                <h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Mis Inversiones</h1>
-                <p class="text-on-surface-variant text-lg">Resumen de tu actividad y rendimiento en la plataforma.</p>
-            </div>
-            <a href="/projects"
-                class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-bold flex items-center gap-2 hover:scale-105 active:scale-95 transition-all ambient-shadow">
-                <span class="material-symbols-outlined">add_circle</span>
-                Explorar Proyectos
-            </a>
-        </div>
-        <!-- Stats Bento Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Total Invested -->
-            <div class="bg-surface-container-lowest p-8 rounded-[1.5rem] ambient-shadow relative overflow-hidden group">
-                <div class="relative z-10">
-                    <span class="text-sm font-bold text-primary uppercase tracking-widest mb-4 block">Total
-                        Invertido</span>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-4xl font-extrabold text-on-surface">€ 142.500</span>
-                        <span
-                            class="text-primary font-bold text-sm bg-primary-container px-2 py-1 rounded-lg">+12%</span>
-                    </div>
-                </div>
-                <div
-                    class="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform duration-500">
-                    <span class="material-symbols-outlined text-[120px]">account_balance_wallet</span>
-                </div>
-            </div>
-            <!-- Active Projects -->
-            <div class="bg-surface-container-lowest p-8 rounded-[1.5rem] ambient-shadow relative overflow-hidden group">
-                <div class="relative z-10">
-                    <span class="text-sm font-bold text-tertiary-dim uppercase tracking-widest mb-4 block">Proyectos
-                        Activos</span>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-4xl font-extrabold text-on-surface">12</span>
-                        <span class="text-on-surface-variant font-medium text-sm">Proyectos</span>
-                    </div>
-                </div>
-                <div
-                    class="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform duration-500">
-                    <span class="material-symbols-outlined text-[120px]">rocket_launch</span>
-                </div>
-            </div>
-            <!-- Estimated Returns -->
-            <div class="bg-inverse-surface p-8 rounded-[1.5rem] ambient-shadow relative overflow-hidden group">
-                <div class="relative z-10">
-                    <span class="text-sm font-bold text-primary-fixed-dim uppercase tracking-widest mb-4 block">Retornos
-                        Estimados</span>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-4xl font-extrabold text-white">€ 18.420</span>
-                        <span class="text-primary-fixed-dim font-bold text-sm">12.9% ROI</span>
-                    </div>
-                </div>
-                <div
-                    class="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-110 transition-transform duration-500 text-white">
-                    <span class="material-symbols-outlined text-[120px]">trending_up</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Investments List / Table Area -->
-    <section>
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-on-surface">Detalle del Portafolio</h2>
-            <div class="flex gap-2">
-                <button
-                    class="bg-surface-container-high px-4 py-2 rounded-lg text-sm font-semibold text-on-surface-variant flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm">filter_list</span> Filtrar
-                </button>
-                <button
-                    class="bg-surface-container-high px-4 py-2 rounded-lg text-sm font-semibold text-on-surface-variant flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm">download</span> Exportar
-                </button>
-            </div>
-        </div>
-        <!-- Data Card List -->
-        <div class="space-y-4">
-            <!-- Entry 1 -->
-            <div
-                class="bg-surface-container-lowest p-6 rounded-[1.5rem] hover:bg-white transition-all ambient-shadow group">
-                <div class="grid grid-cols-1 md:grid-cols-6 items-center gap-6">
-                    <div class="md:col-span-2 flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-surface-variant">
-                            <img class="w-full h-full object-cover"
-                                data-alt="Modern architectural rendering of a sustainable luxury villa development with floor-to-ceiling glass and vertical gardens. The scene is bathed in golden hour sunlight, emphasizing clean lines and high-end materials within a light-mode aesthetic. High-contrast colors and professional photography style."
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5N7zwSke6M6VeGXSfbpy6bJZl9F1-HrX_q32hfDfRimhWI0zNKN-Z-V4COLMG7zhYueB_iwAde8NRbD5A4Vos8P0_6h_hsasFVZycf45U0XyXZRAtLse9ktsLqtjGej7gQWnQ8NvECNWx8h3lAtebyJeBc_8Z5_6nDZhc6bJ8HduFSIbV1NsX_oVQC47S_EcbzOoV99tP0uXvbZmRjlyYhtkyBlx8T2MqX1xCga2t89UtEWtd-m2gpq8TmUiZsnuG-M9d6AvzcQ">
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-on-surface text-lg group-hover:text-primary transition-colors">
-                                Residencial "Luz de Mar"</h3>
-                            <p class="text-on-surface-variant text-sm">Bienes Raíces • Madrid, ES</p>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Invertido</span>
-                        <span class="font-bold text-on-surface">€ 25.000</span>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Fecha</span>
-                        <span class="text-on-surface">12 Oct 2023</span>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Estado</span>
-                        <span
-                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-primary-container text-on-primary-container">
-                            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span> Recaudando
-                        </span>
-                    </div>
-                    <div class="flex justify-end">
-                        <a class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-primary hover:text-white transition-all"
-                            href="#">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- Entry 2 -->
-            <div
-                class="bg-surface-container-lowest p-6 rounded-[1.5rem] hover:bg-white transition-all ambient-shadow group">
-                <div class="grid grid-cols-1 md:grid-cols-6 items-center gap-6">
-                    <div class="md:col-span-2 flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-surface-variant">
-                            <img class="w-full h-full object-cover"
-                                data-alt="A futuristic laboratory setting where engineers are working on a collaborative robotics arm project. The lighting is cool and professional, with highlights of lime green glowing interfaces. High-end industrial design with clean surfaces and technological sophistication in an editorial style."
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7qktKp9IQHXf879bPtv7adwzVG03fi7NHrKe7GwzRcd9v4TPHNdMts36G0jt9u1g0AlZQL5a6Wncj37BRmxqCb1VbyPDMHxaCN8P9PETnRy0KaXizIeHPhrl0rct9o7622vjQZT4Tc4OZtJ2rrMK1Wto18sJsDY-cge45enfRl-MH1kJ09rk4IqhdGvNgOO4fVJROZggVZ3D8yADzBFSOgOcnzJuBd6TSxLfoCTDnmkzb8g817fw4jnAjfv5lMl7I9X36hFOz3A">
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-on-surface text-lg group-hover:text-primary transition-colors">
-                                NeuroBotics Series A</h3>
-                            <p class="text-on-surface-variant text-sm">Tecnología • Berlín, DE</p>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Invertido</span>
-                        <span class="font-bold text-on-surface">€ 50.000</span>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Fecha</span>
-                        <span class="text-on-surface">05 Ene 2024</span>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Estado</span>
-                        <span
-                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-secondary-container text-on-secondary-container">
-                            <span class="w-1.5 h-1.5 rounded-full bg-secondary-dim mr-2"></span> En desarrollo
-                        </span>
-                    </div>
-                    <div class="flex justify-end">
-                        <a class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-primary hover:text-white transition-all"
-                            href="#">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- Entry 3 -->
-            <div
-                class="bg-surface-container-lowest p-6 rounded-[1.5rem] hover:bg-white transition-all ambient-shadow group">
-                <div class="grid grid-cols-1 md:grid-cols-6 items-center gap-6">
-                    <div class="md:col-span-2 flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-surface-variant">
-                            <img class="w-full h-full object-cover"
-                                data-alt="A lush vertical forest building integrated into a modern city skyline. The architecture is organic and experimental, emphasizing sustainability and eco-friendly design. Soft morning light creates a peaceful, hopeful atmosphere with high-key whites and vibrant plant greens."
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEWtKW6TQdfqwWG0kKwrv3oONcxH0c0AZlHLItCTIv0UWfjmILMJvuo59ZJu6vfjIPDMk9Ma4_ySzrCGxFyR4lexrk3jg1AmBCrOMAIbkwmlM-Icrgoq_EsdLlLvBAeBU3ydTDbK3hc2bdgW2PDLPs5_9onDYEXXO96NaGY6yUX-NZ32qMfrGi-QUhYlQjyM10oVqMFuUQDNB7kST-TE2qyxKXbk5gnVcCGrN__R8nyG0rHA3OnmmAPhtXu94SMEOI1O9xQiCyGQ">
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-on-surface text-lg group-hover:text-primary transition-colors">
-                                EcoHabitat Vertical</h3>
-                            <p class="text-on-surface-variant text-sm">Sostenibilidad • Bogotá, CO</p>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Invertido</span>
-                        <span class="font-bold text-on-surface">€ 12.500</span>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Fecha</span>
-                        <span class="text-on-surface">22 Nov 2022</span>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Estado</span>
-                        <span
-                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-surface-variant text-on-surface-variant">
-                            <span class="w-1.5 h-1.5 rounded-full bg-outline-variant mr-2"></span> Finalizado
-                        </span>
-                    </div>
-                    <div class="flex justify-end">
-                        <a class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-primary hover:text-white transition-all"
-                            href="#">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- Entry 4 -->
-            <div
-                class="bg-surface-container-lowest p-6 rounded-[1.5rem] hover:bg-white transition-all ambient-shadow group">
-                <div class="grid grid-cols-1 md:grid-cols-6 items-center gap-6">
-                    <div class="md:col-span-2 flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-surface-variant">
-                            <img class="w-full h-full object-cover"
-                                data-alt="A high-tech electric super-car charging station at night. The design is sleek, carbon-fiber textured, with lime green pulsing neon lights indicating charge status. Minimalist, premium, and powerful visual storytelling with sharp contrasts and moody lighting."
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMCyv8yZbBU_McJa2LN4E91DSk6CQ2hE_A2Bq31BgutEPXK4tcQdlTIKETgtfkYZI6ctIlZzKEZhgcp1R7EOD2tE-Wk6wXId3O61SetRECSB_0-KkKzdoFpnEoBVjg70uMa75KZYB7gerytpP59Udpd6EvjsdW2EVPZEq7u1zBLxgkQGk1mmDaZCdA4wjkJ-FfHvBrTJ78lBVG3VF8Q-UHcdfOAtlOT4nXqJsdOru2FHa1ax_gTTLFOGNNiUiocn21m5O4kzeNHQ">
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-on-surface text-lg group-hover:text-primary transition-colors">
-                                Volt Motors Growth</h3>
-                            <p class="text-on-surface-variant text-sm">Transporte • Lyon, FR</p>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Invertido</span>
-                        <span class="font-bold text-on-surface">€ 55.000</span>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Fecha</span>
-                        <span class="text-on-surface">15 May 2023</span>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Estado</span>
-                        <span
-                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-secondary-container text-on-secondary-container">
-                            <span class="w-1.5 h-1.5 rounded-full bg-secondary-dim mr-2"></span> En desarrollo
-                        </span>
-                    </div>
-                    <div class="flex justify-end">
-                        <a class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-primary hover:text-white transition-all"
-                            href="#">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mt-10 flex justify-center">
-            <button
-                class="text-on-surface-variant font-bold hover:text-primary transition-colors flex items-center gap-2">
-                Ver todas las inversiones pasadas
-                <span class="material-symbols-outlined">expand_more</span>
-            </button>
-        </div>
-    </section>
-</main>
+<main class="flex-grow w-full max-w-screen-2xl mx-auto px-8 py-10 pt-28">
+  <section class="mb-12">
+    <div
+      class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8"
+    >
+      <div>
+        <h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">
+          Proyectos de interés
+        </h1>
+        <p class="text-on-surface-variant text-lg">
+          Tus proyectos guardados para seguirlos o contribuir más adelante.
+        </p>
+      </div>
+      <a
+        href="/projects"
+        class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-bold flex items-center gap-2 hover:scale-105 active:scale-95 transition-all ambient-shadow"
+      >
+        <span class="material-symbols-outlined">add_circle</span>
+        Explorar Proyectos
+      </a>
+    </div>
 
-<!-- Simple Hover Interactivity -->
-<script>
-    document.querySelectorAll('.ambient-shadow').forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-4px)';
-            card.style.transition = 'all 0.3s cubic-bezier(0.2, 0, 0, 1)';
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
-        });
-    });
-</script>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-surface-container-lowest p-8 rounded-2xl ambient-shadow">
+        <span
+          class="text-sm font-bold text-primary uppercase tracking-widest mb-4 block"
+          >Guardados</span
+        >
+        <p id="favorites-count" class="text-4xl font-extrabold text-on-surface">
+          0
+        </p>
+      </div>
+      <div class="bg-surface-container-lowest p-8 rounded-2xl ambient-shadow">
+        <span
+          class="text-sm font-bold text-tertiary-dim uppercase tracking-widest mb-4 block"
+          >Con aportes</span
+        >
+        <p
+          id="contributed-count"
+          class="text-4xl font-extrabold text-on-surface"
+        >
+          0
+        </p>
+      </div>
+      <div class="bg-inverse-surface p-8 rounded-2xl ambient-shadow">
+        <span
+          class="text-sm font-bold text-primary-fixed-dim uppercase tracking-widest mb-4 block"
+          >Total simulado</span
+        >
+        <p id="contributed-total" class="text-4xl font-extrabold text-white">
+          $0
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-bold text-on-surface">Lista de favoritos</h2>
+    </div>
+    <div id="favorite-projects-container" class="space-y-4"></div>
+  </section>
+</main>

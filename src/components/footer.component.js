@@ -3,7 +3,7 @@ const FOOTER = `<!-- Footer -->
     <div class="max-w-7xl mx-auto">
         <div class="grid md:grid-cols-4 gap-12 mb-16">
             <div class="col-span-1 md:col-span-2">
-                <img class="h-12 mb-6 object-cover" alt="Invest hub logo" src="./src/assets/invest-hub-logo-alt.svg"
+                <img class="h-12 mb-6 object-cover" alt="Invest hub logo" src="/src/assets/invest-hub-logo-alt.svg"
                     loading="lazy" />
                 <p class="text-secondary-fixed-dim max-w-sm mb-8 leading-relaxed opacity-70">
                     Elevando la experiencia y tomando el control de tu hogar inteligente. Construyendo el futuro,

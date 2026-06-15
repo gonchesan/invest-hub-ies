@@ -6,7 +6,9 @@ import { PROJECTS } from '../constants.d.js';
 const projectsContainer = document.querySelector('#projects-container');
 
 const renderProjects = (projects) => {
-  projectsContainer.innerHTML = projects.map(createProjectCard).join('');
+  if (projectsContainer) {
+    projectsContainer.innerHTML = projects.map(createProjectCard).join('');
+  }
 };
 
 let currentCategory = 'Todos';
