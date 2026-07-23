@@ -1,4 +1,4 @@
-<main class="flex-grow w-full max-w-screen-2xl mx-auto px-8 py-10 pt-28">
+<div class="flex-grow w-full max-w-screen-2xl mx-auto px-8 py-10 pt-28">
   <section class="mb-12">
     <div
       class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8"
@@ -15,7 +15,7 @@
         href="/projects"
         class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-bold flex items-center gap-2 hover:scale-105 active:scale-95 transition-all ambient-shadow"
       >
-        <span class="material-symbols-outlined">add_circle</span>
+        <span aria-hidden="true" class="material-symbols-outlined">add_circle</span>
         Explorar Proyectos
       </a>
     </div>
@@ -58,6 +58,6 @@
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-2xl font-bold text-on-surface">Lista de favoritos</h2>
     </div>
-    <div id="favorite-projects-container" class="space-y-4"></div>
+    <div id="favorite-projects-container" class="space-y-4" aria-live="polite"></div>
   </section>
-</main>
+</div>

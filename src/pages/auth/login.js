@@ -1,55 +1,41 @@
-import { saveSession } from '../../utils/auth.js';
+import { saveSession, requireGuest } from '../../utils/auth.js';
 import router from '../../router.js';
+import { login } from '../../services/auth.service.js';
+import { validateLogin } from '../../utils/validators.js';
+
+requireGuest('/');
 
 const form = document.getElementById('login-form');
+const errorMessage = document.getElementById('login-error');
 
-form.addEventListener('submit', (e) => {
+const showError = (message) => {
+  if (!errorMessage) return;
+
+  errorMessage.textContent = message;
+  errorMessage.classList.toggle('hidden', !message);
+};
+
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const email = document.getElementById('login-email').value;
-  const password = document.getElementById('login-password').value; // Usar password para validar que existe
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
   const remember = document.getElementById('login-remember').checked;
 
-  const userData = {
-    email,
-  };
+  const errors = validateLogin({ email, password });
+  const firstError = Object.values(errors)[0];
 
-  saveSession(userData, remember);
-
-  router.navigate('/');
-  console.log('Sesión guardada');
-});
-
-const usuarioLogueado =
-  JSON.parse(localStorage.getItem('INVEST_HUB_USER')) ||
-  JSON.parse(sessionStorage.getItem('INVEST_HUB_USER'));
-
-if (usuarioLogueado) {
-  console.log('Usuario logueado:', usuarioLogueado);
-}
-
-// const usuarioLogueado = sessionStorage.getItem('INVEST_HUB_USER');
-
-// 📌 REDIRECCIONES CONDICIONALES
-// Si estoy en login y ya hay sesión activa → redirigir al inicio
-if (
-  (window.location.pathname.includes('/auth/login') ||
-    window.location.pathname.includes('/auth/register')) &&
-  usuarioLogueado
-) {
-  window.location.href = '/';
-}
-
-// Si NO estoy en login.html y tampoco hay sesión → redirijo al login
-// El operador ! significa "NO". !usuarioLogueado = "no hay usuario logueado"
-// if (!window.location.pathname.includes("login.html") && !usuarioLogueado) {
-//     window.location.href = "login.html";
-// }
-
-// 📌 MOSTRAR EL NOMBRE DEL USUARIO EN EL BOTÓN DE LOGOUT
-if (usuarioLogueado) {
-  const logoutLink = document.getElementById('logoutLink');
-  if (logoutLink) {
-    logoutLink.textContent = `🚪 Cerrar sesión (${usuarioLogueado})`;
+  if (firstError) {
+    showError(firstError);
+    return;
   }
-}
+
+  try {
+    const profile = await login(email, password);
+    saveSession(profile, remember);
+    showError('');
+    router.navigate('/');
+  } catch (error) {
+    showError(error.message);
+  }
+});

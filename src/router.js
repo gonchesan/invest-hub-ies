@@ -113,17 +113,17 @@ class SimpleRouter {
       console.error('❌ Error al cargar página:', error);
       this.appContainer.innerHTML = `
       <!-- Main Content: 404 Canvas -->
-      <main class="min-h-[819px] flex flex-col items-center justify-center px-6 py-12 text-center overflow-hidden relative">
+      <div class="min-h-[819px] flex flex-col items-center justify-center px-6 py-12 text-center overflow-hidden relative">
         <!-- Abstract Decorative Element (Glassmorphism) -->
-        <div class="absolute -top-24 -left-24 w-96 h-96 bg-primary-container/20 rounded-full blur-[100px] -z-10"></div>
-        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-tertiary-container/30 rounded-full blur-[100px] -z-10"></div>
+        <div aria-hidden="true" class="absolute -top-24 -left-24 w-96 h-96 bg-primary-container/20 rounded-full blur-[100px] -z-10"></div>
+        <div aria-hidden="true" class="absolute -bottom-24 -right-24 w-96 h-96 bg-tertiary-container/30 rounded-full blur-[100px] -z-10"></div>
         <!-- 404 Impactful Visual -->
         <div class="relative mb-8">
           <h1 class="font-display font-extrabold text-[12rem] leading-none text-on-surface/5 select-none md:text-[18rem]">404</h1>
           <div class="absolute inset-0 flex items-center justify-center">
             <div class="p-1 rounded-full bg-surface-container-lowest shadow-[0px_20px_40px_rgba(45,46,52,0.06)]">
               <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden flex items-center justify-center bg-inverse-surface">
-                <img class="w-full h-full object-cover opacity-80 mix-blend-luminosity" data-alt="An abstract, high-end digital representation of a lost horizon in a dark, minimalist space. The scene is illuminated by a single, vibrant lime green light source that reflects off glossy, black geometric surfaces. The mood is sophisticated and mysterious, reflecting the premium editorial vision of a modern investment platform. High-contrast lighting and soft bokeh effects create a sense of depth and visionary aesthetic." src="/src/assets/404.png" />
+                <img class="w-full h-full object-cover opacity-80 mix-blend-luminosity" alt="" src="/src/assets/404.png" />
               </div>
             </div>
           </div>
@@ -133,12 +133,12 @@ class SimpleRouter {
           <p class="font-body text-lg text-on-surface-variant max-w-lg mx-auto"> Incluso los intercambios más curados tienen sus vacíos. La página que buscas ha sido archivada o nunca llegó a ser parte de nuestra visión. </p>
           <div class="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a class="px-8 py-4 bg-primary-container text-on-primary-fixed font-bold rounded-full transition-transform active:scale-95 hover:shadow-lg hover:shadow-primary-container/20 flex items-center gap-2 group" href="/">
-              <span class="material-symbols-outlined">arrow_back</span> Volver al Inicio </a>
-            <a class="px-8 py-4 bg-surface-container-lowest text-on-background font-semibold rounded-full border border-outline-variant/10 transition-all hover:bg-surface-container-low flex items-center gap-2" href="/proyectos">
-              <span class="material-symbols-outlined">explore</span> Explorar Proyectos </a>
+              <span aria-hidden="true" class="material-symbols-outlined">arrow_back</span> Volver al Inicio </a>
+            <a class="px-8 py-4 bg-surface-container-lowest text-on-background font-semibold rounded-full border border-outline-variant/10 transition-all hover:bg-surface-container-low flex items-center gap-2" href="/projects">
+              <span aria-hidden="true" class="material-symbols-outlined">explore</span> Explorar Proyectos </a>
           </div>
         </div>
-      </main>
+      </div>
       `;
     }
   }
@@ -202,15 +202,6 @@ class SimpleRouter {
       document.body.appendChild(newScript);
     });
   }
-}
-
-// Instanciar router cuando el DOM esté listo
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    new SimpleRouter();
-  });
-} else {
-  new SimpleRouter();
 }
 
 const router = new SimpleRouter();

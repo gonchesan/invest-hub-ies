@@ -1,11 +1,11 @@
-<main
+<div
   class="min-h-screen flex items-center justify-center p-4 md:p-8 md:py-16 bg-[radial-gradient(circle_at_top_left,#f7f6fe_0%,#e0d7ff_100%)]"
 >
   <div
     class="w-full max-w-6xl flex flex-col md:flex-row bg-surface-container-lowest rounded-xl overflow-hidden ambient-shadow min-h-175"
   >
     <a href="/" class="flex gap-2 absolute top-6 text-primary font-bold ml-1">
-      <span class="material-symbols-outlined" data-icon="arrow_left_alt"
+      <span aria-hidden="true" class="material-symbols-outlined" data-icon="arrow_left_alt"
         >arrow_left_alt</span
       >
       Volver al inicio
@@ -46,6 +46,7 @@
             class="w-8 h-8 bg-primary rounded flex items-center justify-center"
           >
             <span
+              aria-hidden="true"
               class="material-symbols-outlined text-white text-sm"
               data-icon="auto_awesome"
               >auto_awesome</span
@@ -69,10 +70,12 @@
           <div class="space-y-2">
             <label
               class="text-xs font-bold tracking-wider text-on-surface-variant uppercase px-1"
+              for="login-email"
               >CORREO ELECTRÓNICO</label
             >
             <div class="relative">
               <span
+                aria-hidden="true"
                 class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline"
                 data-icon="mail"
                 >mail</span
@@ -82,6 +85,8 @@
                 placeholder="nombre@ejemplo.com"
                 type="email"
                 id="login-email"
+                autocomplete="email"
+                required
               />
             </div>
           </div>
@@ -89,6 +94,7 @@
             <div class="flex justify-between items-center px-1">
               <label
                 class="text-xs font-bold tracking-wider text-on-surface-variant uppercase"
+                for="login-password"
                 >CONTRASEÑA</label
               >
               <a
@@ -99,6 +105,7 @@
             </div>
             <div class="relative">
               <span
+                aria-hidden="true"
                 class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline"
                 data-icon="lock"
                 >lock</span
@@ -108,6 +115,8 @@
                 placeholder="••••••••"
                 type="password"
                 id="login-password"
+                autocomplete="current-password"
+                required
               />
             </div>
           </div>
@@ -119,16 +128,17 @@
             />
             <label
               class="text-sm font-semibold text-on-surface-variant"
-              for="remember"
+              for="login-remember"
               >Mantener sesión iniciada</label
             >
           </div>
+          <p id="login-error" role="alert" class="hidden text-sm font-semibold text-error px-1"></p>
           <button
             class="w-full py-4 bg-primary-container text-on-primary-container headline-font font-bold text-lg rounded-full shadow-lg shadow-primary/10 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
             type="submit"
           >
             Iniciar Sesión
-            <span class="material-symbols-outlined" data-icon="arrow_forward"
+            <span aria-hidden="true" class="material-symbols-outlined" data-icon="arrow_forward"
               >arrow_forward</span
             >
           </button>
@@ -147,4 +157,4 @@
       </div>
     </section>
   </div>
-</main>
+</div>

@@ -56,12 +56,15 @@ function renderGuestButtons() {
 function renderUserMenu() {
   const session = getSession();
 
+  const initial = session?.email?.[0]?.toUpperCase() || 'U';
+
   return `
     <details class="relative">
       <summary
         class="list-none cursor-pointer flex items-center"
+        aria-label="Abrir menú de usuario"
       >
-      <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold capitalize">${session.email[0] || 'U'}</div>
+      <div aria-hidden="true" class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold capitalize">${initial}</div>
       </summary>
 
       <div
@@ -104,55 +107,80 @@ function renderUserMenu() {
   `;
 }
 
+// Renderiza un link de navegación para el menú mobile expandible
+const renderMobileNavLink = (route) => `
+  <a
+    href="${route.link}"
+    class="block px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
+      isActive(route.link)
+        ? 'bg-primary-container text-on-primary-container'
+        : 'text-on-surface hover:bg-surface-container-low'
+    }"
+    ${isActive(route.link) ? 'aria-current="page"' : ''}
+  >
+    ${route.label}
+  </a>
+`;
+
 // Funcion que se encarga de renderizar todo el componente
 export function renderNavbar() {
   const navbarContainer = document.querySelector('header');
 
+  const visibleRoutes = isAuthenticated()
+    ? PUBLIC_ROUTES
+    : PUBLIC_ROUTES.slice(0, -1);
+
+  const renderNavLink = (route) => `
+    <a
+      href="${route.link}"
+      class="${getNavLinkClass(route.link)}"
+      ${isActive(route.link) ? 'aria-current="page"' : ''}
+    >
+      ${route.label}
+    </a>
+  `;
+
   const navbarHTML = `
     <nav
-      class="sticky top-0 z-50 flex justify-between items-center w-full px-6 py-4 bg-[#f7f6fe] bg-opacity-90 backdrop-blur-md"
+      aria-label="Navegación principal"
+      class="sticky top-0 z-50 relative flex justify-between items-center w-full px-6 py-4 bg-[#f7f6fe] bg-opacity-90 backdrop-blur-md"
     >
       <div class="flex items-center gap-4">
-        <img
-          class="h-12 w-full object-cover"
-          alt="Invest hub logo"
-          src="/src/assets/invest-hub-logo.svg"
-          loading="lazy"
-        />
-
-        <span class="h-8 w-1 bg-gray-300"></span>
+        <a href="/">
+          <img
+            class="h-12 w-full object-cover"
+            alt="Invest hub logo"
+            src="/src/assets/invest-hub-logo.svg"
+            loading="lazy"
+          />
+        </a>
+        <span aria-hidden="true" class="h-8 w-1 bg-gray-300"></span>
 
         <div class="hidden md:flex items-center gap-6 font-plus-jakarta text-sm font-medium">
-          ${
-            isAuthenticated()
-              ? PUBLIC_ROUTES.map((route) => {
-                  return `
-              <a
-                href="${route.link}"
-                class="${getNavLinkClass(route.link)}"
-              >
-                ${route.label}
-              </a>
-            `;
-                }).join('')
-              : PUBLIC_ROUTES.map((route) => {
-                  return `
-              <a
-                href="${route.link}"
-                class="${getNavLinkClass(route.link)}"
-              >
-                ${route.label}
-              </a>
-            `;
-                })
-                  .slice(0, -1)
-                  .join('')
-          }
+          ${visibleRoutes.map(renderNavLink).join('')}
         </div>
       </div>
 
       <div class="flex items-center gap-4">
         ${isAuthenticated() ? renderUserMenu() : renderGuestButtons()}
+
+        <button
+          id="mobile-menu-toggle"
+          type="button"
+          class="md:hidden flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-low transition-colors"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Abrir menú de navegación"
+        >
+          <span id="mobile-menu-icon" aria-hidden="true" class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden flex-col gap-1 absolute inset-x-0 top-full px-6 py-4 bg-[#f7f6fe] shadow-lg border-t border-gray-200/60 font-plus-jakarta"
+      >
+        ${visibleRoutes.map(renderMobileNavLink).join('')}
       </div>
     </nav>
   `;
@@ -169,5 +197,24 @@ export function renderNavbar() {
 
   logoutButton?.addEventListener('click', () => {
     logout();
+  });
+
+  /*
+   |--------------------------------------------------------------------------
+   | Mobile Menu Toggle
+   |--------------------------------------------------------------------------
+   */
+
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+
+  mobileMenuToggle?.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+
+    const isOpen = !mobileMenu.classList.contains('hidden');
+
+    mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+    mobileMenuIcon.textContent = isOpen ? 'close' : 'menu';
   });
 }

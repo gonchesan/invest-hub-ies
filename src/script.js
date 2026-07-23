@@ -11,9 +11,51 @@ renderFooter();
 // Obtener el contenedor del navbar
 const navbarContainer = document.querySelector('header');
 const footerContainer = document.querySelector('footer');
+const appContainer = document.getElementById('app');
+const routeAnnouncer = document.getElementById('route-announcer');
+
+/*
+ |--------------------------------------------------------------------------
+ | ACCESIBILIDAD EN NAVEGACIÓN SPA
+ |--------------------------------------------------------------------------
+ | Al no haber recarga de página entre rutas, lectores de pantalla y
+ | usuarios de teclado no reciben ninguna señal de que el contenido
+ | cambió. Actualizamos el <title>, movemos el foco al contenido nuevo
+ | y anunciamos la navegación en una región "aria-live".
+ */
+
+const ROUTE_TITLES = [
+  { pattern: /^\/$/, title: 'Inicio' },
+  { pattern: /^\/projects\/[^/]+$/, title: 'Detalle del proyecto' },
+  { pattern: /^\/projects/, title: 'Proyectos' },
+  { pattern: /^\/invests/, title: 'Favoritos' },
+  { pattern: /^\/auth\/login/, title: 'Iniciar sesión' },
+  { pattern: /^\/auth\/register/, title: 'Crear cuenta' },
+];
+
+const getRouteTitle = (path) => {
+  const match = ROUTE_TITLES.find((route) => route.pattern.test(path));
+  return match?.title || 'Página no encontrada';
+};
+
+const announceRouteChange = (path) => {
+  const pageTitle = getRouteTitle(path);
+
+  document.title = `${pageTitle} · Invest Hub`;
+
+  if (appContainer) {
+    appContainer.focus();
+  }
+
+  if (routeAnnouncer) {
+    routeAnnouncer.textContent = `Navegaste a ${pageTitle}`;
+  }
+};
 
 // Ejecutar cuando la ruta cambia
 router.onRouteChange((path) => {
+  announceRouteChange(path);
+
   /*
    |--------------------------------------------------------------------------
    | AUTH ROUTES - Detectar si estamos en una página de autenticación

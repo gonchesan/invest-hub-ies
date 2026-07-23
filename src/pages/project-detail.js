@@ -1,4 +1,4 @@
-import { PROJECTS } from '../constants.d.js';
+import { getProjectById } from '../services/projects.service.js';
 import { formatArs, getPercentage } from '../utils/currency.js';
 import {
   addProjectContribution,
@@ -37,7 +37,7 @@ const getDaysLeft = (deadline) => {
 const renderNotFound = (container) => {
   container.innerHTML = `
     <section class="min-h-[480px] flex flex-col items-center justify-center text-center gap-5">
-      <span class="material-symbols-outlined text-6xl text-outline">search_off</span>
+      <span aria-hidden="true" class="material-symbols-outlined text-6xl text-outline">search_off</span>
       <h1 class="font-display text-4xl font-extrabold text-on-surface">Proyecto no encontrado</h1>
       <p class="max-w-xl text-on-surface-variant">El proyecto seleccionado no existe o ya no está disponible.</p>
       <a href="/projects" class="px-6 py-3 rounded-full bg-primary-container text-on-primary-container font-bold">
@@ -70,7 +70,7 @@ const renderProject = (container, project) => {
               ${project.category}
             </span>
             <span class="flex items-center gap-1 text-on-surface-variant text-sm font-medium">
-              <span class="material-symbols-outlined text-sm">event</span>
+              <span aria-hidden="true" class="material-symbols-outlined text-sm">event</span>
               Fecha límite: ${formatDate(project.deadline)}
             </span>
           </div>
@@ -85,7 +85,7 @@ const renderProject = (container, project) => {
           id="favorite-detail-button"
           class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-outline-variant/30 transition-all ${favoriteButtonClass}"
           ${isLoggedIn ? '' : 'disabled'}>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' ${favorite ? 1 : 0};">favorite</span>
+          <span aria-hidden="true" class="material-symbols-outlined" style="font-variation-settings: 'FILL' ${favorite ? 1 : 0};">favorite</span>
           ${isLoggedIn ? (favorite ? 'Quitar de favoritos' : 'Agregar a favoritos') : 'Inicia sesión para guardar'}
         </button>
       </div>
@@ -122,7 +122,7 @@ const renderProject = (container, project) => {
                   .map(
                     (reward) => `
                       <li class="flex gap-3 bg-surface-container-lowest p-4 rounded-xl ambient-shadow">
-                        <span class="material-symbols-outlined text-primary">redeem</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-primary">redeem</span>
                         <span class="text-on-surface-variant">${reward}</span>
                       </li>
                     `,
@@ -141,7 +141,13 @@ const renderProject = (container, project) => {
                 <span id="collected-amount" class="font-display text-4xl font-black text-on-surface">${formatArs(collected)}</span>
                 <span id="funding-percentage" class="font-label text-primary font-bold">${percentage}%</span>
               </div>
-              <div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+              <div
+                class="w-full h-3 bg-surface-container rounded-full overflow-hidden"
+                role="progressbar"
+                aria-label="Progreso de recaudación"
+                aria-valuenow="${Math.min(percentage, 100)}"
+                aria-valuemin="0"
+                aria-valuemax="100">
                 <div id="funding-progress" class="bg-primary h-full transition-all duration-700 ease-out" style="width: ${Math.min(percentage, 100)}%"></div>
               </div>
               <p class="text-sm text-on-surface-variant mt-3">
@@ -168,6 +174,7 @@ const renderProject = (container, project) => {
                 min="1"
                 placeholder="Monto en ARS"
                 required
+                aria-describedby="contribution-feedback"
                 ${isLoggedIn ? '' : 'disabled'}
                 type="number">
               <button
@@ -175,7 +182,7 @@ const renderProject = (container, project) => {
                 ${isLoggedIn ? '' : 'disabled'}>
                 ${isLoggedIn ? 'Contribuir' : 'Inicia sesión para contribuir'}
               </button>
-              <p id="contribution-feedback" class="min-h-5 text-sm ${isLoggedIn ? 'text-primary' : 'text-on-surface-variant'} font-semibold">
+              <p id="contribution-feedback" role="status" aria-live="polite" class="min-h-5 text-sm ${isLoggedIn ? 'text-primary' : 'text-on-surface-variant'} font-semibold">
                 ${isLoggedIn ? '' : 'Necesitas iniciar sesión para guardar favoritos o realizar contribuciones.'}
               </p>
             </form>
@@ -221,11 +228,11 @@ const bindEvents = (container, project) => {
 };
 
 export default {
-  mount() {
+  async mount() {
     const container = document.querySelector('#project-detail-container');
     if (!container) return;
 
-    const project = PROJECTS.find((item) => item.id === getProjectIdFromUrl());
+    const project = await getProjectById(getProjectIdFromUrl());
 
     if (!project) {
       renderNotFound(container);

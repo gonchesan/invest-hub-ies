@@ -78,3 +78,15 @@ h2,
 h3 {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
+
+/*
+ * Indicador de foco de teclado consistente en toda la app.
+ * Muchos componentes usan estilos custom (rounded-full, sin borde) que
+ * ocultan el outline por defecto del navegador; esto lo restituye
+ * de forma uniforme solo para navegación por teclado (WCAG 2.4.7).
+ */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}

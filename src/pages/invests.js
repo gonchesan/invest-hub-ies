@@ -1,4 +1,4 @@
-import { PROJECTS } from '../constants.d.js';
+import { getProjects } from '../services/projects.service.js';
 import { formatArs, getPercentage } from '../utils/currency.js';
 import {
   getFavoriteProjectIds,
@@ -9,12 +9,12 @@ import {
 const renderEmptyState = (container) => {
   container.innerHTML = `
     <div class="bg-surface-container-lowest p-10 rounded-2xl ambient-shadow text-center">
-      <span class="material-symbols-outlined text-5xl text-outline mb-4">favorite</span>
+      <span aria-hidden="true" class="material-symbols-outlined text-5xl text-outline mb-4">favorite</span>
       <h3 class="text-2xl font-bold text-on-surface mb-2">No guardaste proyectos todavía</h3>
       <p class="text-on-surface-variant mb-6">Explora el archivo y marca proyectos como favoritos para verlos aquí.</p>
       <a href="/projects" class="inline-flex items-center gap-2 bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-bold">
         Explorar proyectos
-        <span class="material-symbols-outlined">arrow_forward</span>
+        <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
       </a>
     </div>
   `;
@@ -54,11 +54,11 @@ const createFavoriteRow = (project) => {
         </div>
 
         <div class="flex justify-end gap-2">
-          <a class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-primary hover:text-white transition-all" href="/projects/${project.id}" aria-label="Ver detalle">
-            <span class="material-symbols-outlined">arrow_forward</span>
+          <a class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-primary hover:text-white transition-all" href="/projects/${project.id}" aria-label="Ver detalle de ${project.title}">
+            <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
           </a>
-          <button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-error-container hover:text-on-error-container transition-all cursor-pointer" data-remove-favorite="${project.id}" aria-label="Eliminar favorito">
-            <span class="material-symbols-outlined">delete</span>
+          <button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-error-container hover:text-on-error-container transition-all cursor-pointer" data-remove-favorite="${project.id}" aria-label="Eliminar ${project.title} de favoritos">
+            <span aria-hidden="true" class="material-symbols-outlined">delete</span>
           </button>
         </div>
       </div>
@@ -80,12 +80,13 @@ const renderStats = (projects) => {
   document.querySelector('#contributed-total').textContent = formatArs(total);
 };
 
-const renderFavorites = () => {
+const renderFavorites = async () => {
   const container = document.querySelector('#favorite-projects-container');
   if (!container) return;
 
   const favoriteIds = getFavoriteProjectIds();
-  const projects = PROJECTS.filter((project) =>
+  const allProjects = await getProjects();
+  const projects = allProjects.filter((project) =>
     favoriteIds.includes(project.id),
   );
 

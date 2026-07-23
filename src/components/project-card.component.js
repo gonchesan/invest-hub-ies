@@ -108,7 +108,7 @@ export const createProjectCard = (card) => {
           data-favorite-project="${card.id}"
           ${canUseFavorites ? '' : 'disabled'}
           aria-label="${isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}">
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' ${isFavorite ? 1 : 0};">favorite</span>
+          <span aria-hidden="true" class="material-symbols-outlined" style="font-variation-settings: 'FILL' ${isFavorite ? 1 : 0};">favorite</span>
         </button>
       </div>
 
@@ -132,7 +132,13 @@ export const createProjectCard = (card) => {
             </span>
           </div>
 
-          <div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+          <div
+            class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden"
+            role="progressbar"
+            aria-label="Progreso de recaudación de ${card.title}"
+            aria-valuenow="${Math.min(percentage, 100)}"
+            aria-valuemin="0"
+            aria-valuemax="100">
             <div
               class="h-full bg-primary-container rounded-full"
               style="width: ${Math.min(percentage, 100)}%">
@@ -152,6 +158,7 @@ export const createProjectCard = (card) => {
 
             <a
               href="/projects/${card.id}"
+              aria-label="Ver más sobre ${card.title}"
               class="bg-on-surface text-surface py-2 px-6 rounded-full font-bold text-sm hover:opacity-90 active:scale-95 transition-all cursor-pointer">
               Ver más
             </a>
@@ -186,13 +193,20 @@ export const createUrgentCard = (card) => {
                     <span class="text-primary">${percentage}% Financiado</span>
                     <span class="text-on-surface">${formatArs(collected)}</span>
                 </div>
-                <div class="w-full h-3 bg-surface-container-low rounded-full overflow-hidden">
+                <div
+                    class="w-full h-3 bg-surface-container-low rounded-full overflow-hidden"
+                    role="progressbar"
+                    aria-label="Progreso de recaudación de ${card.title}"
+                    aria-valuenow="${Math.min(percentage, 100)}"
+                    aria-valuemin="0"
+                    aria-valuemax="100">
                     <div class="bg-primary h-full rounded-full" style="width: ${Math.min(percentage, 100)}%"></div>
                 </div>
                 <div class="flex justify-between items-center pt-2">
                     <div class="text-xs text-on-surface-variant">Meta: <b>${formatArs(card.goal)}</b></div>
                     <a
                         href="/projects/${card.id}"
+                        aria-label="Invertir en ${card.title}"
                         class="bg-primary-container text-on-primary-fixed px-4 py-2 rounded-full text-xs font-bold hover:opacity-80 cursor-pointer">Invertir</a>
                 </div>
             </div>

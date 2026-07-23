@@ -5,7 +5,7 @@ const AUTH_KEY = 'INVEST_HUB_USER';
  * de si el usuario quiere mantener sesión.
  */
 export function getAuthStorage(remember = false) {
-  return sessionStorage;
+  return remember ? localStorage : sessionStorage;
 }
 
 /**
@@ -15,7 +15,7 @@ export function saveSession(data, remember = false) {
   // Limpiar ambos storages antes de guardar
   clearSession();
 
-  sessionStorage.setItem(AUTH_KEY, JSON.stringify(data));
+  getAuthStorage(remember).setItem(AUTH_KEY, JSON.stringify(data));
 }
 
 /**
@@ -58,7 +58,7 @@ export function updateSession(newData) {
     ...newData,
   };
 
-  saveSession(updatedSession);
+  saveSession(updatedSession, isPersistentSession());
 }
 
 /**
@@ -84,7 +84,7 @@ export function logout(redirectTo = '/auth/login') {
  * Retorna true si la sesión es persistente.
  */
 export function isPersistentSession() {
-  return false;
+  return !!localStorage.getItem(AUTH_KEY);
 }
 
 /**

@@ -1,7 +1,6 @@
 import router from '../router.js';
-import '../components/project-card.component.js';
 import { createProjectCard } from '../components/project-card.component.js';
-import { PROJECTS } from '../constants.d.js';
+import { getProjects } from '../services/projects.service.js';
 
 const projectsContainer = document.querySelector('#projects-container');
 
@@ -14,8 +13,10 @@ const renderProjects = (projects) => {
 let currentCategory = 'Todos';
 let searchTerm = '';
 
-const filterProjects = () => {
-  return PROJECTS.filter((project) => {
+const filterProjects = async () => {
+  const projects = await getProjects();
+
+  return projects.filter((project) => {
     const matchesCategory =
       currentCategory === 'Todos' || project.category === currentCategory;
 
@@ -34,7 +35,7 @@ export const initProjectFilters = () => {
   const filters = document.querySelector('#projects-filters');
 
   if (filters) {
-    filters.addEventListener('click', (e) => {
+    filters.addEventListener('click', async (e) => {
       const button = e.target.closest('button');
 
       if (!button) return;
@@ -52,6 +53,8 @@ export const initProjectFilters = () => {
           'bg-surface-container-highest',
           'text-on-surface-variant',
         );
+
+        btn.setAttribute('aria-pressed', 'false');
       });
 
       button.classList.remove(
@@ -60,19 +63,20 @@ export const initProjectFilters = () => {
       );
 
       button.classList.add('bg-primary-container', 'text-on-primary-container');
+      button.setAttribute('aria-pressed', 'true');
 
-      renderProjects(filterProjects());
+      renderProjects(await filterProjects());
     });
   }
 };
 
-router.onRouteChange((_) => {
-  renderProjects(filterProjects());
+router.onRouteChange(async (_) => {
+  renderProjects(await filterProjects());
   initProjectFilters();
 });
 
 // Search bar focus effect
-const searchInput = document.querySelector('input[type="text"]');
+const searchInput = document.querySelector('#projects-search');
 searchInput.addEventListener('focus', () => {
   searchInput.parentElement.classList.add('scale-[1.02]');
 });
@@ -80,7 +84,7 @@ searchInput.addEventListener('blur', () => {
   searchInput.parentElement.classList.remove('scale-[1.02]');
 });
 
-searchInput.addEventListener('input', (e) => {
+searchInput.addEventListener('input', async (e) => {
   searchTerm = e.target.value;
-  renderProjects(filterProjects());
+  renderProjects(await filterProjects());
 });

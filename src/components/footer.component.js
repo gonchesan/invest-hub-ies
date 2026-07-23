@@ -1,7 +1,7 @@
 const FOOTER = `<!-- Footer -->
 <footer class="bg-inverse-surface text-white py-20 px-6 mt-12 mb-20 lg:mb-0 rounded-t-[3rem]">
     <div class="max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-4 gap-12 mb-16">
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-12 mb-16">
             <div class="col-span-1 md:col-span-2">
                 <img class="h-12 mb-6 object-cover" alt="Invest hub logo" src="/src/assets/invest-hub-logo-alt.svg"
                     loading="lazy" />

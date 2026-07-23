@@ -1,9 +1,9 @@
-<main
+<div
     class="min-h-screen flex items-center justify-center p-4 md:p-8 md:py-16 bg-[radial-gradient(circle_at_top_left,#f7f6fe_0%,#e0d7ff_100%)]">
     <div
         class="w-full max-w-6xl flex flex-col md:flex-row bg-surface-container-lowest rounded-xl overflow-hidden ambient-shadow min-h-175">
         <a href="/" class="flex gap-2 absolute top-6 text-primary font-bold ml-1 ">
-            <span class="material-symbols-outlined" data-icon="arrow_left_alt">arrow_left_alt</span>
+            <span aria-hidden="true" class="material-symbols-outlined" data-icon="arrow_left_alt">arrow_left_alt</span>
             Volver al inicio
         </a>
         <!-- Lado izquierdo -->
@@ -40,63 +40,75 @@
                         mismo.</p>
                 </div>
                 <!-- Seccion del formulario -->
-                <form class="space-y-6">
+                <form class="space-y-6" id="register-form">
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-2">
                             <label
-                                class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Nombre</label>
+                                class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
+                                for="register-firstname">Nombre</label>
                             <input
+                                id="register-firstname"
                                 class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 focus:ring-2 focus:ring-primary-container transition-all placeholder:text-outline/50 font-medium"
-                                placeholder="Ej. Ana" type="text" />
+                                placeholder="Ej. Ana" type="text" autocomplete="given-name" required />
                         </div>
                         <div class="space-y-2">
                             <label
-                                class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Apellido</label>
+                                class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
+                                for="register-lastname">Apellido</label>
                             <input
+                                id="register-lastname"
                                 class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 focus:ring-2 focus:ring-primary-container transition-all placeholder:text-outline/50 font-medium"
-                                placeholder="Ej. García" type="text" />
+                                placeholder="Ej. García" type="text" autocomplete="family-name" required />
                         </div>
                     </div>
                     <div class="space-y-2">
                         <label
-                            class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Correo
+                            class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
+                            for="register-email">Correo
                             electrónico</label>
                         <input
+                            id="register-email"
                             class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 focus:ring-2 focus:ring-primary-container transition-all placeholder:text-outline/50 font-medium"
-                            placeholder="nombre@ejemplo.com" type="email" />
+                            placeholder="nombre@ejemplo.com" type="email" autocomplete="email" required />
                     </div>
                     <div class="space-y-2">
                         <label
-                            class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Fecha
+                            class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
+                            for="register-birthdate">Fecha
                             de nacimiento</label>
                         <div class="relative">
                             <input
+                                id="register-birthdate"
                                 class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 focus:ring-2 focus:ring-primary-container transition-all text-on-surface-variant font-medium"
-                                type="date" />
+                                type="date" autocomplete="bday" />
                         </div>
                     </div>
                     <div class="space-y-2">
                         <label
-                            class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Contraseña</label>
+                            class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
+                            for="register-password">Contraseña</label>
                         <div class="relative">
                             <input
+                                id="register-password"
                                 class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 focus:ring-2 focus:ring-primary-container transition-all placeholder:text-outline/50 font-medium"
-                                placeholder="••••••••" type="password" />
+                                placeholder="••••••••" type="password" autocomplete="new-password"
+                                aria-describedby="register-password-hint" required />
                             <button
                                 class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
-                                type="button">
-                                <span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+                                type="button" aria-label="Mostrar u ocultar contraseña">
+                                <span aria-hidden="true" class="material-symbols-outlined" data-icon="visibility">visibility</span>
                             </button>
                         </div>
-                        <p class="text-[10px] text-on-surface-variant/60 px-1 italic">Mínimo 8 caracteres, incluyendo un
+                        <p id="register-password-hint" class="text-[10px] text-on-surface-variant/60 px-1 italic">Mínimo 8 caracteres, incluyendo un
                             número y un símbolo.</p>
                     </div>
+                    <p id="register-error" role="alert" class="hidden text-sm font-semibold text-error px-1"></p>
                     <div class="pt-4">
                         <button
                             class="w-full bg-primary-container hover:bg-primary-fixed-dim text-on-primary-container font-headline font-bold py-5 rounded-full ambient-shadow transition-all active:scale-95 flex items-center justify-center gap-3"
                             type="submit">
                             Registrarme ahora
-                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+                            <span aria-hidden="true" class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
                         </button>
                     </div>
 
@@ -106,11 +118,11 @@
                     <p class="text-on-surface-variant font-medium">
                         ¿Ya eres miembro?
                         <a class="text-primary font-bold hover:underline underline-offset-4 ml-1"
-                            href="/login.html">Iniciar
+                            href="/auth/login">Iniciar
                             Sesión</a>
                     </p>
                 </div>
             </div>
         </section>
     </div>
-</main>
+</div>
