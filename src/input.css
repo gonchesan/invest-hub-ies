@@ -90,3 +90,13 @@ h3 {
   outline-offset: 3px;
   border-radius: 0.5rem;
 }
+
+/*
+ * #app recibe foco por JS en cada cambio de ruta (ver script.js) solo para
+ * que lectores de pantalla detecten la navegación, no como destino visual
+ * de foco por teclado. Sin esta excepción, el outline rodea todo el
+ * contenido y se ve como un borde al hacer scroll hasta el final.
+ */
+#app:focus-visible {
+  outline: none;
+}

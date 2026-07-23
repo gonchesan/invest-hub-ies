@@ -1,5 +1,5 @@
 <div
-    class="min-h-screen flex items-center justify-center p-4 md:p-8 md:py-16 bg-[radial-gradient(circle_at_top_left,#f7f6fe_0%,#e0d7ff_100%)]">
+    class="min-h-screen flex items-center justify-center p-8 py-16 bg-[radial-gradient(circle_at_top_left,#f7f6fe_0%,#e0d7ff_100%)]">
     <div
         class="w-full max-w-6xl flex flex-col md:flex-row bg-surface-container-lowest rounded-xl overflow-hidden ambient-shadow min-h-175">
         <a href="/" class="flex gap-2 absolute top-6 text-primary font-bold ml-1 ">
@@ -29,9 +29,9 @@
         <!-- Lado derecho -->
         <section class="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 bg-surface">
             <div class="w-full max-w-md">
-                <div class="lg:hidden mb-12">
-                    <h1 class="font-headline font-extrabold text-inverse-surface text-2xl tracking-tight">The Curated
-                        Exchange</h1>
+                <div class="flex md:hidden items-center gap-2 mb-8">
+                    <img class="h-12  object-cover" alt="Invest hub logo" src="/src/assets/invest-hub-logo.svg"
+                        loading="lazy" />
                 </div>
                 <div class="mb-10">
                     <h2 class="font-headline text-4xl font-extrabold text-on-background mb-3 tracking-tight">Crea tu
@@ -46,8 +46,7 @@
                             <label
                                 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
                                 for="register-firstname">Nombre</label>
-                            <input
-                                id="register-firstname"
+                            <input id="register-firstname"
                                 class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 focus:ring-2 focus:ring-primary-container transition-all placeholder:text-outline/50 font-medium"
                                 placeholder="Ej. Ana" type="text" autocomplete="given-name" required />
                         </div>
@@ -55,8 +54,7 @@
                             <label
                                 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
                                 for="register-lastname">Apellido</label>
-                            <input
-                                id="register-lastname"
+                            <input id="register-lastname"
                                 class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 focus:ring-2 focus:ring-primary-container transition-all placeholder:text-outline/50 font-medium"
                                 placeholder="Ej. García" type="text" autocomplete="family-name" required />
                         </div>
@@ -66,8 +64,7 @@
                             class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
                             for="register-email">Correo
                             electrónico</label>
-                        <input
-                            id="register-email"
+                        <input id="register-email"
                             class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 focus:ring-2 focus:ring-primary-container transition-all placeholder:text-outline/50 font-medium"
                             placeholder="nombre@ejemplo.com" type="email" autocomplete="email" required />
                     </div>
@@ -77,8 +74,7 @@
                             for="register-birthdate">Fecha
                             de nacimiento</label>
                         <div class="relative">
-                            <input
-                                id="register-birthdate"
+                            <input id="register-birthdate"
                                 class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 focus:ring-2 focus:ring-primary-container transition-all text-on-surface-variant font-medium"
                                 type="date" autocomplete="bday" />
                         </div>
@@ -88,18 +84,19 @@
                             class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
                             for="register-password">Contraseña</label>
                         <div class="relative">
-                            <input
-                                id="register-password"
+                            <input id="register-password"
                                 class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 focus:ring-2 focus:ring-primary-container transition-all placeholder:text-outline/50 font-medium"
                                 placeholder="••••••••" type="password" autocomplete="new-password"
                                 aria-describedby="register-password-hint" required />
                             <button
                                 class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
                                 type="button" aria-label="Mostrar u ocultar contraseña">
-                                <span aria-hidden="true" class="material-symbols-outlined" data-icon="visibility">visibility</span>
+                                <span aria-hidden="true" class="material-symbols-outlined"
+                                    data-icon="visibility">visibility</span>
                             </button>
                         </div>
-                        <p id="register-password-hint" class="text-[10px] text-on-surface-variant/60 px-1 italic">Mínimo 8 caracteres, incluyendo un
+                        <p id="register-password-hint" class="text-[10px] text-on-surface-variant/60 px-1 italic">Mínimo
+                            8 caracteres, incluyendo un
                             número y un símbolo.</p>
                     </div>
                     <p id="register-error" role="alert" class="hidden text-sm font-semibold text-error px-1"></p>
@@ -108,7 +105,8 @@
                             class="w-full bg-primary-container hover:bg-primary-fixed-dim text-on-primary-container font-headline font-bold py-5 rounded-full ambient-shadow transition-all active:scale-95 flex items-center justify-center gap-3"
                             type="submit">
                             Registrarme ahora
-                            <span aria-hidden="true" class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+                            <span aria-hidden="true" class="material-symbols-outlined"
+                                data-icon="arrow_forward">arrow_forward</span>
                         </button>
                     </div>
 

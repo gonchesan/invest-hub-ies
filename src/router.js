@@ -103,7 +103,7 @@ class SimpleRouter {
       // this.executeScripts(this.appContainer);
 
       // Scroll al inicio
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
       this.currentRoute = path;
 

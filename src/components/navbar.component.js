@@ -122,6 +122,28 @@ const renderMobileNavLink = (route) => `
   </a>
 `;
 
+// Renderiza los botones de inicio y registro dentro del menú mobile expandible
+function renderMobileGuestButtons() {
+  return `
+    <div class="flex flex-col gap-2 mt-2 pt-3 border-t border-gray-200/60">
+      ${AUTH_ROUTES.map(
+        (route) => `
+          <a
+            href="${route.link}"
+            class="block text-center px-4 py-3 rounded-xl text-sm font-bold transition-colors ${
+              route.link === '/auth/register'
+                ? 'bg-primary-container text-on-primary-fixed shadow-sm'
+                : 'text-on-surface border border-gray-200 hover:bg-surface-container-low'
+            }"
+          >
+            ${route.label}
+          </a>
+        `
+      ).join('')}
+    </div>
+  `;
+}
+
 // Funcion que se encarga de renderizar todo el componente
 export function renderNavbar() {
   const navbarContainer = document.querySelector('header');
@@ -162,7 +184,11 @@ export function renderNavbar() {
       </div>
 
       <div class="flex items-center gap-4">
-        ${isAuthenticated() ? renderUserMenu() : renderGuestButtons()}
+        ${
+          isAuthenticated()
+            ? renderUserMenu()
+            : `<div class="hidden md:flex items-center gap-4">${renderGuestButtons()}</div>`
+        }
 
         <button
           id="mobile-menu-toggle"
@@ -181,6 +207,7 @@ export function renderNavbar() {
         class="hidden md:hidden flex-col gap-1 absolute inset-x-0 top-full px-6 py-4 bg-[#f7f6fe] shadow-lg border-t border-gray-200/60 font-plus-jakarta"
       >
         ${visibleRoutes.map(renderMobileNavLink).join('')}
+        ${!isAuthenticated() ? renderMobileGuestButtons() : ''}
       </div>
     </nav>
   `;
